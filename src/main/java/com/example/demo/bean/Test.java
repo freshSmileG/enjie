@@ -1,6 +1,8 @@
 package com.example.demo.bean;
 
-public class Test {
+import java.io.Serializable;
+
+public class Test implements Serializable {
     String id;
 
     public String getId() {

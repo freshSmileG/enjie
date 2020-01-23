@@ -15,4 +15,8 @@ public class TestServiceImpl implements TestService {
     public List<Test> selectAll() {
         return testMapper.selectAll();
     }
+
+    public Test selectById(Test test) {
+        return testMapper.selectById(test);
+    }
 }
