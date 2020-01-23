@@ -27,8 +27,8 @@ public class TestController {
     public Test selectById( Test test){
         Test t = (Test) redisTemplate.opsForValue().get("test");
         if (t!=null){
-            //return t;
-            return null;
+            return t;
+            //return null;
         }
         else{
             t = testServiceImpl.selectById(test);
