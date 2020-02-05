@@ -8,5 +8,6 @@ import java.util.List;
 public interface TestMapper {
     public List<Test> selectAll();
     public Test selectById(Test test);
+    public void addTest(Test test);
 
 }

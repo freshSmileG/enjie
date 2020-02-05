@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 import com.example.demo.bean.Test;
+import com.example.demo.producter.TopicProducter;
 import com.example.demo.service.serviceImpl.TestServiceImpl;
 import org.redisson.Redisson;
 import org.redisson.api.RLock;
@@ -25,6 +26,8 @@ import java.util.concurrent.TimeUnit;
 @Controller
 @ResponseBody
 public class TestController {
+    @Autowired
+    TopicProducter topicProducter;
     @Autowired
     Redisson redisson;
     @Autowired
@@ -62,7 +65,9 @@ public class TestController {
         //
         try {
             lock1.lock();//加上redis锁
-            int count = Integer.parseInt(stringredisTemplate.opsForValue().get("count"));
+            //redis里面存储key test ,对应值为200
+            int count = Integer.parseInt
+                    (stringredisTemplate.opsForValue().get("test"));
             if (count>0) {
                 count = count - 1;
                 redisTemplate.opsForValue().set("count", count);
@@ -75,11 +80,12 @@ public class TestController {
             //释放redis锁
             lock1.unlock();
         }
-
-
     }
 
-
-
-
+    //activemq异步添加数据到数据库
+    @RequestMapping("/addTest")
+    public String addTest(Test test){
+        topicProducter.sendMessage(test);
+        return "已添加";
+    }
 }

@@ -9,4 +9,7 @@
     <select id="selectById" resultType="com.example.demo.bean.Test" parameterType="com.example.demo.bean.Test">
         select * from test where id = #{id} ;
     </select>
+    <insert id="addTest" parameterType="com.example.demo.bean.Test">
+        insert into test (id) value (#{id});
+    </insert>
 </mapper>

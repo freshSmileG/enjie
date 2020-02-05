@@ -19,4 +19,9 @@ public class TestServiceImpl implements TestService {
     public Test selectById(Test test) {
         return testMapper.selectById(test);
     }
+
+    @Override
+    public void addTest(Test test) {
+        testMapper.addTest(test);
+    }
 }

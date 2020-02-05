@@ -7,5 +7,6 @@ import java.util.List;
 public interface TestService {
     public List<Test> selectAll();
     public Test selectById(Test test);
+    public void addTest(Test test);
 
 }
